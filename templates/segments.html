@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% block content %}
+<section class="page-heading"><div class="wrap"><div class="eyebrow">SEGMENTOS / ONDE ATUAMOS</div><h1>Conhecer o seu setor.<br><em>Entender sua aplicação.</em></h1><p>Materiais versáteis para necessidades específicas. Explore os segmentos e conte para nossa equipe o que sua operação precisa.</p></div></section>
+{% set descriptions = [
+'Consulte peças para concretagem e construção. Informe o equipamento, o modelo da peça e as medidas necessárias.',
+'Explique a etapa do processo e as condições de uso para avaliar o material e a peça com a equipe técnica.',
+'Compartilhe o modelo do veículo, a aplicação e as referências da peça para consultar uma solução.',
+'Do equipamento à aplicação no campo: envie as medidas e descreva as condições de operação.',
+'Informe o equipamento, a rotina de uso e os requisitos da aplicação para consultar peças técnicas.',
+'Apresente a função do componente e as especificações do projeto para uma avaliação da equipe.',
+'Descreva o equipamento e as condições de contato da peça com fluidos para avaliar possibilidades.',
+'Informe a função da peça, os fluidos envolvidos e as condições de trabalho para consulta técnica.',
+'Compartilhe detalhes da máquina e do processo de movimentação ou embalagem para consultar a peça.',
+'Informe o componente a revestir, suas medidas e as condições de desgaste no processo.',
+'Explique a aplicação e as condições de abrasão e impacto para avaliar peças e revestimentos.',
+'Conte sobre a etapa de manuseio ou movimentação do vidro e os requisitos do componente.'
+] %}
+<section class="section wrap"><div class="section-heading"><div><div class="eyebrow">DOZE SEGMENTOS. MUITAS POSSIBILIDADES.</div><h2>Seu desafio tem<br>espaço aqui.</h2></div><p>A aplicação define os requisitos da peça. Dimensões, esforço e ambiente de uso ajudam a orientar a escolha.</p></div><div class="industry-grid">{% for segment in segments %}<article class="industry"><span class="eyebrow">{{ '%02d'|format(loop.index) }} / SEGMENTO</span><h3>{{ segment }}</h3><p>{{ descriptions[loop.index0] }}</p><a class="text-link" href="{{ url_for('contact',message='Gostaria de avaliar peças para o segmento de ' + segment + '.') }}">Consultar uma solução <span>↗</span></a></article>{% endfor %}</div></section>
+{% include '_callout.html' %}{% endblock %}

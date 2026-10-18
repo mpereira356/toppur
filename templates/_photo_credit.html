@@ -1,0 +1,7 @@
+{% if product.photo %}
+<div class="photo-credit">
+  {% if product.photo.illustrative %}<strong>Imagem ilustrativa</strong>{% endif %}
+  <p>{{ product.photo.caption }}</p>
+  <p>Foto: <a href="{{ product.photo.page }}" target="_blank" rel="noopener">{{ product.photo.author }}</a>{% if product.photo.illustrative %} · {% if product.photo.license_url %}<a href="{{ product.photo.license_url }}" target="_blank" rel="noopener">{{ product.photo.license }}</a>{% else %}{{ product.photo.license }}{% endif %} · Sem alterações no arquivo original.{% endif %}</p>
+</div>
+{% endif %}

@@ -1,0 +1,18 @@
+<div class="product-grid">
+{% for product in products %}
+  <a class="product-card" href="{{ url_for('product',slug=product.slug) }}">
+    <div class="product-image">
+      {% if product.image %}
+      <img src="{{ url_for('static',filename='assets/' + product.image) }}" alt="{{ product.photo.caption if product.photo else product.name }}" loading="lazy">
+      {% if product.photo and product.photo.illustrative %}<small class="photo-reference-label">Imagem ilustrativa</small>{% endif %}
+      {% else %}
+      <div class="product-without-photo"><small>{{ lines[product.line] }}</small><strong>{{ product.name }}</strong><small>CONSULTE SUA APLICAÇÃO</small></div>
+      {% endif %}
+      <span aria-hidden="true">↗</span>
+    </div>
+    <small>{{ categories[product.category] }}</small><h3>{{ product.name }}</h3><p>{{ product.description|truncate(100) }}</p>
+  </a>
+{% else %}
+  <div class="empty"><h3>Nenhum produto encontrado</h3><p>Tente outro termo ou consulte nossa equipe para uma peça sob medida.</p><a class="button" href="{{ url_for('products') }}">Ver todos os produtos</a></div>
+{% endfor %}
+</div>

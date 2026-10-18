@@ -1,0 +1,25 @@
+{% extends 'base.html' %}{% block content %}
+<section class="section wrap">
+  <div class="breadcrumb"><a href="{{ url_for('home') }}">Início</a> / <a href="{{ url_for('products') }}">Produtos</a> / {{ product.name }}</div>
+  <div class="product-detail">
+    <div class="detail-photo-column">
+      <div class="detail-photo">
+        {% if product.image %}
+        <img src="{{ url_for('static',filename='assets/' + product.image) }}" alt="{{ product.photo.caption if product.photo else product.name }}">
+        {% else %}
+        <div class="product-without-photo"><small>{{ lines[product.line] }}</small><strong>{{ product.name }}</strong><small>PEÇA TÉCNICA SOB CONSULTA</small></div>
+        {% endif %}
+      </div>
+      {% include '_photo_credit.html' %}
+    </div>
+    <div>
+      <div class="eyebrow">{{ lines[product.line] }}</div><h1>{{ product.name }}</h1><p>{{ product.description }}</p>
+      <ul class="spec-list"><li>Aplicação avaliada pela equipe técnica</li><li>Medidas e especificações conforme o projeto</li><li>Atendimento direto da fábrica</li></ul>
+      <a class="button" href="{{ url_for('contact',material=categories[product.category],message='Gostaria de um orçamento para ' + product.name + '.') }}">Solicitar orçamento desta peça ↗</a>
+      <p class="muted">Informe medidas, quantidade e condições de uso para uma avaliação.</p>
+      {% if product.slug == 'concretagem' %}<a class="text-link product-catalog-link" href="{{ url_for('catalog_pdf') }}" target="_blank" rel="noopener">Ver catálogo oficial de concretagem (PDF) <span>↗</span></a>{% endif %}
+    </div>
+  </div>
+  {% if products %}<div class="section-heading"><div><div class="eyebrow">CONTINUE EXPLORANDO</div><h2>Outras soluções desta linha</h2></div></div>{% include '_products.html' %}{% endif %}
+</section>
+{% endblock %}

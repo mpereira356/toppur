@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TOPPUR: peças técnicas em poliuretano, borracha e plásticos industriais. Fabricação sob medida em Caieiras, SP.">
+  <meta name="theme-color" content="#222623">
+  <title>{{ title }} | TOPPUR</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static',filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/fonts.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='site.css',v='3') }}">
+</head>
+<body class="page-{{ request.endpoint }}">
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <div class="topbar"><div class="wrap"><span><i class="status-dot"></i> POLIURETANO, BORRACHA E PLÁSTICOS INDUSTRIAIS</span><a href="https://wa.me/5511991632077" target="_blank" rel="noopener">Fale com a fábrica <span aria-hidden="true">↗</span></a></div></div>
+  <header><div class="wrap header">
+    <a class="brand" href="{{ url_for('home') }}"><img class="logo" src="{{ url_for('static', filename='assets/logo.jpg') }}" alt="TOPPUR — início" width="400" height="104"></a>
+    <nav id="nav" aria-label="Navegação principal">
+      {% for endpoint,label in [('home','Início'),('products','Produtos'),('segments','Segmentos'),('about','A TOPPUR'),('contact','Contato')] %}
+      <a class="{{ 'active' if request.endpoint == endpoint or (request.endpoint=='product' and endpoint=='products') else '' }}" {% if request.endpoint == endpoint %}aria-current="page"{% endif %} href="{{ url_for(endpoint) }}">{{ label }}</a>
+      {% endfor %}
+    </nav>
+    <a class="button header-cta" href="{{ url_for('contact') }}">Solicitar orçamento <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span aria-hidden="true">☰</span></button>
+  </div></header>
+  <main id="conteudo">{% block content %}{% endblock %}</main>
+  <footer>
+    <div class="wrap footer-intro"><a class="footer-wordmark" href="{{ url_for('home') }}" aria-label="TOPPUR início">TOP<span>PUR</span></a><p>Peças que conectam conhecimento<br>técnico ao movimento da indústria.</p><a class="footer-contact" href="{{ url_for('contact') }}">Vamos conversar <span>↗</span></a></div>
+    <div class="wrap footer-main">
+      <div><h4>Um parceiro para sua indústria.</h4><p>Poliuretano, borracha e plásticos industriais.<br>Fabricação sob medida. Atendimento próximo.</p><a href="mailto:toppur@toppur.com.br">toppur@toppur.com.br ↗</a></div>
+      <div><h4>Explore</h4><a href="{{ url_for('products') }}">Nossos produtos</a><a href="{{ url_for('segments') }}">Segmentos</a><a href="{{ url_for('about') }}">Sobre a TOPPUR</a><a href="{{ url_for('contact') }}">Fale conosco</a></div>
+      <div><h4>Onde estamos</h4><a href="https://www.google.com/maps/search/?api=1&query=Avenida+David+Kasitzky+508+Caieiras+SP" target="_blank" rel="noopener">Avenida David Kasitzky, 508<br>Vila Rosina · Caieiras, SP<br>CEP 07749-505 <span aria-hidden="true">↗</span></a></div>
+      <div><h4>Atendimento</h4><p>Segunda a sexta-feira<br>07h às 12h · 13h às 16h</p><p>Sábados e domingos: fechado</p><a href="https://wa.me/5511991632077" target="_blank" rel="noopener">(11) 99163-2077 ↗</a></div>
+    </div>
+    <div class="wrap footer-bottom"><span>© {{ year }} TOPPUR. Todos os direitos reservados.</span><span>Feito para os desafios da indústria.</span><a href="#conteudo">Voltar ao topo ↑</a></div>
+  </footer>
+  <a class="whatsapp" href="https://wa.me/5511991632077" aria-label="Conversar com a TOPPUR pelo WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M27 15.5a11 11 0 0 1-16.4 9.6L4 27l1.9-6.3A11 11 0 1 1 27 15.5Z" stroke="currentColor" stroke-width="2"/><path d="M11 10c-2 1-1 5 2 8s6 4 8 2l-3-3-2 1c-2-1-3-2-4-4l1-1-2-3Z" fill="currentColor"/></svg><span class="whatsapp-label">Fale com a TOPPUR</span></a>
+  <script src="{{ url_for('static',filename='app.js') }}" defer></script>
+</body></html>

@@ -1,0 +1,21 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3030:3030"
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: "3030"
+    volumes:
+      - toppur_data:/app/instance
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:3030/', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  toppur_data:

@@ -1,0 +1,17 @@
+[Unit]
+Description=TOPPUR Flask / Waitress
+After=network.target
+
+[Service]
+Type=simple
+User=toppur
+Group=toppur
+WorkingDirectory=/opt/toppur
+EnvironmentFile=/opt/toppur/.env
+ExecStart=/opt/toppur/.venv/bin/python /opt/toppur/run.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

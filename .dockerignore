@@ -1,0 +1,10 @@
+.git
+.venv
+.env
+.qa
+instance
+__pycache__
+**/__pycache__
+*.pyc
+toppur-site
+*.tar.gz
